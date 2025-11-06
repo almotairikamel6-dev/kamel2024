@@ -6,15 +6,10 @@ import { useLanguage } from '../hooks/useLanguage';
 import { navLinks } from '../constants';
 
 const Header = () => {
-  const { language, changeLanguage, t, direction } = useLanguage();
+  const { t, direction } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = ReactRouterDOM.useNavigate();
-
-  const handleLanguageChange = () => {
-    changeLanguage(language === 'ar' ? 'en' : 'ar');
-    setIsMenuOpen(false); // Close menu on language change
-  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,12 +63,6 @@ const Header = () => {
             <div className="mx-2">
               <SearchForm />
             </div>
-             <button
-                onClick={handleLanguageChange}
-                className="bg-heritage-gold text-pure-white px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-80 transition"
-              >
-                {t('changeLanguage')}
-              </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -120,12 +109,6 @@ const Header = () => {
                 {t(link.labelKey)}
               </ReactRouterDOM.NavLink>
             ))}
-            <button
-              onClick={handleLanguageChange}
-              className="w-full text-start bg-heritage-gold text-pure-white px-3 py-2 rounded-md text-base font-medium hover:bg-opacity-80 transition"
-            >
-              {t('changeLanguage')}
-            </button>
           </div>
         </div>
       )}
